@@ -51,10 +51,6 @@ public class HopperBreakListener implements Listener {
             }
         });
 
-        if (speedLevel <= 0 && rangeLevel <= 0) {
-            return;
-        }
-
         Bukkit.getScheduler().runTask(plugin, () -> {
             if (block.getType() == Material.AIR) {
                 block.getWorld().dropItemNaturally(

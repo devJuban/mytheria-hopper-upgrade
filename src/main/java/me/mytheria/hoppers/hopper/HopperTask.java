@@ -1,6 +1,7 @@
 package me.mytheria.hoppers.hopper;
 
-import me.mytheria.hoppers.MytheriaHoppers;
+import java.util.Map;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -10,7 +11,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.Map;
+import me.mytheria.hoppers.MytheriaHoppers;
 
 public class HopperTask extends BukkitRunnable {
 
@@ -46,6 +47,13 @@ public class HopperTask extends BukkitRunnable {
                     "speed-upgrades." + speedLevel + ".transfer-ticks",
                     8
             );
+
+            org.bukkit.block.Hopper hopper =
+                    (org.bukkit.block.Hopper) block.getState();
+            if (hopper.getTransferCooldown() != transferTicks) {
+                hopper.setTransferCooldown(transferTicks);
+                hopper.update(true, false);
+            }
 
             if (currentTick - data.getLastTransferTick() < transferTicks) {
                 continue;
