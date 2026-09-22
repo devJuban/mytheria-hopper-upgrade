@@ -48,13 +48,6 @@ public class HopperTask extends BukkitRunnable {
                     8
             );
 
-            org.bukkit.block.Hopper hopper =
-                    (org.bukkit.block.Hopper) block.getState();
-            if (hopper.getTransferCooldown() != transferTicks) {
-                hopper.setTransferCooldown(transferTicks);
-                hopper.update(true, false);
-            }
-
             if (currentTick - data.getLastTransferTick() < transferTicks) {
                 continue;
             }
